@@ -1,7 +1,10 @@
-﻿namespace HRSystem.Common.Authorization
+﻿namespace HRSystem.Common.Authorization;
+
+public static class AppFeature
 {
-    public static class AppFeature
-    {
-        public const string Empoloyees = nameof(Empoloyees);
-    }
+    public const string Employees = nameof(Employees);
+    public const string Users = nameof(Users);
+    public const string Roles = nameof(Roles);
+    public const string UserRoles = nameof(UserRoles);
+    public const string RoleClaims = nameof(RoleClaims);
 }
