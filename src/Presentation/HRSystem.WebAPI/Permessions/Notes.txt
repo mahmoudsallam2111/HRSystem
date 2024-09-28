@@ -1,0 +1,13 @@
+﻿How It Works in Practice
+
+
+1- When an authorization policy is requested, the PermessionPolicyProvider checks if the policy name indicates a permission-based policy (i.e., starts with AppClaim.Permession). 
+If so, it creates a policy that requires the corresponding permission.
+
+2- The PermessionAuthorizationHandler then checks whether the current user has the required permission, as defined by their claims.
+
+3- If the user has the necessary permission, access is granted; otherwise, it is denied.
+
+Note:
+This approach allows you to implement fine-grained access control based on user permissions stored in their claims.
+It's useful when you have various permissions in the system, and different users may have different levels of access to resources or actions.

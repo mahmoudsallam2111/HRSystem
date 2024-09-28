@@ -5,7 +5,10 @@ using Microsoft.Extensions.Options;
 namespace HRSystem.WebAPI.Permessions
 {
     /// <summary>
-    /// add permession dynamically in permession const
+    ///  this class for providing custom policy provider &&
+    ///  Dynamically creates authorization policies based on permission requirements.
+    ///  If a policy name matches a permission pattern, it builds a custom policy that requires the specific permission. 
+    ///  It also allows falling back to the default policy provider for non-permission-based policies.
     /// </summary>
     public class PermessionPolicyProvider : IAuthorizationPolicyProvider
     {

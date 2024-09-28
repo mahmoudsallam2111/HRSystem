@@ -3,7 +3,8 @@
 namespace HRSystem.WebAPI.Permessions
 {
     /// <summary>
-    ///  this the requirement class needed for PermessionAuthenticationHandler class
+    /// Defines a custom requirement that specifies a permission the user must have to access certain resources &&
+    /// this the requirement class needed for PermessionAuthenticationHandler class
     /// </summary>
     public class PermessionRequirement : IAuthorizationRequirement
     {

@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 namespace HRSystem.WebAPI.Permessions
 {
     /// <summary>
-    /// validate that the new added permesion meets the specifications
+    /// Contains the logic for checking if a user meets the PermessionRequirement.
+    /// It examines the user's claims and checks if they have the necessary permission (specified in PermessionRequirement)
     /// </summary>
     public class PermessionAuthorizationHandler : AuthorizationHandler<PermessionRequirement>
     {
