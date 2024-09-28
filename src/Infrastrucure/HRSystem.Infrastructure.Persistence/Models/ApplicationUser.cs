@@ -9,8 +9,8 @@ namespace HRSystem.Infrastructure.Persistence.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string RefreshToken { get; set; }
-        public DateTime RefreshTokenExpiryDate { get; set; }
+        public string? RefreshToken { get; set; } = string.Empty;
+        public DateTime? RefreshTokenExpiryDate { get; set; } = DateTime.UtcNow;
         public bool IsActive { get; set; }
     }
 }

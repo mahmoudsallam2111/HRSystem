@@ -12,7 +12,8 @@ namespace HRSystem.Infrastructure.Persistence
              services.AddDbContext<ApplicationDbContext>(options =>
              {
                  options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-             });
+             })
+                .AddTransient<ApplicationDbSeeder>();   // when application start the seeder class is registered
 
             return services;
         }

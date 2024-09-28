@@ -162,10 +162,9 @@ namespace HRSystem.Infrastructure.Persistence.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("RefreshToken")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("RefreshTokenExpiryDate")
+                    b.Property<DateTime?>("RefreshTokenExpiryDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SecurityStamp")

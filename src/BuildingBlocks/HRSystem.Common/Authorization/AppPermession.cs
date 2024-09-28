@@ -9,7 +9,7 @@
 /// <param name="IsBasic">when i create a new user the only permesion that assign to it is the permession that take isbasic = true</param>
 public record AppPermession(string Feature, string Action, string Group, string Description, bool IsBasic = false)
 {
-    public string Name { get; set; } = string.Empty;
+    public string Name => NameFor(Feature, Action);
 
     public static string NameFor(string feature, string action)
      => $"permessions.{feature}.{action}";

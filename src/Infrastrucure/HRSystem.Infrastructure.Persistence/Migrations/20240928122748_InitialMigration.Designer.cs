@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRSystem.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240927165318_InitialDb")]
-    partial class InitialDb
+    [Migration("20240928122748_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -165,10 +165,9 @@ namespace HRSystem.Infrastructure.Persistence.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("RefreshToken")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("RefreshTokenExpiryDate")
+                    b.Property<DateTime?>("RefreshTokenExpiryDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SecurityStamp")
