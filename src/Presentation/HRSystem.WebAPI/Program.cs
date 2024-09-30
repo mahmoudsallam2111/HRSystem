@@ -1,6 +1,8 @@
+using HRSystem.Application.Services.Identity;
 using HRSystem.Infrastructure.Persistence;
 using HRSystem.Infrastructure.Persistence.Context;
 using HRSystem.Infrastructure.Persistence.Models;
+using HRSystem.Infrastructure.Persistence.Services.Identity;
 using HRSystem.WebAPI;
 using HRSystem.WebAPI.Permessions;
 using Microsoft.AspNetCore.Authorization;
@@ -12,11 +14,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
 
 #region Register Services
 
 builder.Services.AddDatabase(builder.Configuration);
-
 
 builder.Services
     .AddScoped<IAuthorizationPolicyProvider,PermessionPolicyProvider>()
@@ -47,6 +49,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapControllers();
 
 app.Run();
 

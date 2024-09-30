@@ -1,4 +1,6 @@
-﻿using HRSystem.Infrastructure.Persistence.Context;
+﻿using HRSystem.Application.Services.Identity;
+using HRSystem.Infrastructure.Persistence.Context;
+using HRSystem.Infrastructure.Persistence.Services.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
