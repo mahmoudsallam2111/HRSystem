@@ -1,4 +1,4 @@
-﻿using HRSystem.Domain.Entities.Employee;
+﻿using HRSystem.Domain.Entities;
 using HRSystem.Infrastructure.Persistence.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;

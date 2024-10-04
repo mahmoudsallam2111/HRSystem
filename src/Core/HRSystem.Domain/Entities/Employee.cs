@@ -1,6 +1,6 @@
 ﻿using HRSystem.Domain.Entities.ValueObjects;
 
-namespace HRSystem.Domain.Entities.Employee
+namespace HRSystem.Domain.Entities
 {
     public class Employee
     {

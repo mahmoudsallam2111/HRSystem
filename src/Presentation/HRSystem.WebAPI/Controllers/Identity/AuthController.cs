@@ -13,7 +13,7 @@ namespace HRSystem.WebAPI.Controllers.Identity
     [ApiController]
     public class AuthController : BaseController<AuthController>
     {
-        
+
 
         [HttpPost("get-token")]
         [AllowAnonymous]
@@ -27,7 +27,7 @@ namespace HRSystem.WebAPI.Controllers.Identity
 
         [HttpPost("get-refresh-token")]
         [AllowAnonymous]
-        public async Task<ActionResult<ResponseWrapper<TokenResponse>>> GetRefreshToken([FromBody] RefreshTokenRequest  refreshTokenRequest)
+        public async Task<ActionResult<ResponseWrapper<TokenResponse>>> GetRefreshToken([FromBody] RefreshTokenRequest refreshTokenRequest)
         {
             var tokenResponse = await Sender.Send(new GetRefreshTokenQuery { refreshTokenRequest = refreshTokenRequest });
             if (tokenResponse.IsSuccessful)

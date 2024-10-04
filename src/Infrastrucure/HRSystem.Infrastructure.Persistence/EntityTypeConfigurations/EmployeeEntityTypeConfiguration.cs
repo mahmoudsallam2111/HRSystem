@@ -1,4 +1,4 @@
-﻿using HRSystem.Domain.Entities.Employee;
+﻿using HRSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
