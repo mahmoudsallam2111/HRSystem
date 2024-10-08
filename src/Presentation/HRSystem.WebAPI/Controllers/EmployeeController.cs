@@ -21,7 +21,11 @@ namespace HRSystem.WebAPI.Controllers
         public async Task<IActionResult> GetAllEmployee()
         {
             var response = await Sender.Send(new GetEmployeesQuery { });
-            return Ok(response);
+
+            if (response.IsSuccessful)
+                return Ok(response);
+
+            return NotFound(response);
         }
 
         [HttpGet("{id}")]
@@ -29,7 +33,11 @@ namespace HRSystem.WebAPI.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var response = await Sender.Send(new GetEmployeeByIdQuery {EmployeeId = id});
-            return Ok(response);
+
+            if (response.IsSuccessful)
+               return Ok(response);
+
+            return NotFound(response);
         }
 
 
@@ -38,7 +46,11 @@ namespace HRSystem.WebAPI.Controllers
         public async Task<IActionResult> CreateEmployee([FromBody] CreateEmployeeRequest createEmployeeRequest)
         {
            var response = await Sender.Send(new CreateEmployeeCommand { CreateEmployeeRequest = createEmployeeRequest});
-            return Ok(response);
+
+            if (response.IsSuccessful)
+                return Ok(response);
+
+            return BadRequest(response);
         }
 
         [HttpPost("update-employee")]

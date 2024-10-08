@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HRSystem.Common.Requests.Employee;
 using HRSystem.Common.Responses.Employee;
+using HRSystem.Common.Responses.Identity;
 using HRSystem.Domain.Entities;
 using HRSystem.Domain.Entities.ValueObjects;
 
@@ -22,6 +23,7 @@ namespace HRSystem.Application
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FullName.FirstName))
                 .ForMember(dest => dest.SecondName, opt => opt.MapFrom(src => src.FullName.SecondName))
                 .ForMember(dest => dest.FamilyName, opt => opt.MapFrom(src => src.FullName.FamilyName));
+
         }
     }
 }

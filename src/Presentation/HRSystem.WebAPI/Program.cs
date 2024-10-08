@@ -19,6 +19,12 @@ builder.Services.AddApplicationServices();
 
 
 builder.Services.AddInfrastructureRepositories();
+builder.Services.AddInfrastructureDependencies();
+
+// scan DI && register it
+
+builder.Services.DependencyInjectionRegistrationScan();
+
 // add swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.RegisterSwagger();

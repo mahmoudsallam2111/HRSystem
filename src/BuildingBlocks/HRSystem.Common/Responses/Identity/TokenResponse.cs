@@ -1,4 +1,4 @@
-﻿namespace HRSystem.Common.Responses;
+﻿namespace HRSystem.Common.Responses.Identity;
 
 public class TokenResponse
 {

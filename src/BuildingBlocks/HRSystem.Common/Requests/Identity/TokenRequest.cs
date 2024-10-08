@@ -1,4 +1,4 @@
-﻿namespace HRSystem.Common.Requests;
+﻿namespace HRSystem.Common.Requests.Identity;
 
 public class TokenRequest
 {

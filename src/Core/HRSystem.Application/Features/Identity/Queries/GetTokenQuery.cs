@@ -1,5 +1,5 @@
 ﻿using HRSystem.Application.Services.Identity;
-using HRSystem.Common.Requests;
+using HRSystem.Common.Requests.Identity;
 using HRSystem.Common.Responses.Wrapper;
 using MediatR;
 

@@ -27,6 +27,7 @@ namespace HRSystem.Infrastructure.Persistence
         public static IServiceCollection AddIdentityServices(this IServiceCollection services)
         {
             services.AddTransient<ITokenService, TokenService>();
+                //.AddTransient<IUserService, UserService>();  replaced to user scrutor
             return services;
         }
 
@@ -36,6 +37,12 @@ namespace HRSystem.Infrastructure.Persistence
             RegisterGenericRepositories(services);
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            return services;
+        }
+
+        public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services)
+        {
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }
 

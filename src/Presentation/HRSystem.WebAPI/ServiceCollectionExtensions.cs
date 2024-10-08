@@ -1,8 +1,10 @@
 ﻿using HRSystem.Application.AppConfigs;
 using HRSystem.Common.Authorization;
+using HRSystem.Common.DIContracts;
 using HRSystem.Common.Responses.Wrapper;
 using HRSystem.Infrastructure.Persistence.Context;
 using HRSystem.Infrastructure.Persistence.Models;
+using HRSystem.Infrastructure.Persistence.Services.Identity;
 using HRSystem.WebAPI.Permessions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -181,6 +183,28 @@ namespace HRSystem.WebAPI
         }
 
 
+        public static IServiceCollection DependencyInjectionRegistrationScan(this IServiceCollection services)
+        {
+            services.Scan(scan => scan
+                                .FromAssemblies(typeof(UserService).Assembly)
+                                .AddClasses(c=>c.AssignableTo<ITransiantService>())
+                                .AsImplementedInterfaces()
+                                .WithTransientLifetime());
+
+            services.Scan(scan => scan
+                               .FromAssemblies(typeof(UserService).Assembly)
+                               .AddClasses(c => c.AssignableTo<IScopedService>())
+                               .AsImplementedInterfaces()
+                               .WithScopedLifetime());
+
+            services.Scan(scan => scan
+                               .FromAssemblies(typeof(UserService).Assembly)
+                               .AddClasses(c => c.AssignableTo<ISingletonService>())
+                               .AsImplementedInterfaces()
+                               .WithSingletonLifetime());
+
+            return services;
+        }
 
         internal static IApplicationBuilder SeedDataBase(this IApplicationBuilder app)
         {

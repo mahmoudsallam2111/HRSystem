@@ -1,5 +1,5 @@
-﻿using HRSystem.Common.Requests;
-using HRSystem.Common.Responses;
+﻿using HRSystem.Common.Requests.Identity;
+using HRSystem.Common.Responses.Identity;
 using HRSystem.Common.Responses.Wrapper;
 
 namespace HRSystem.Application.Services.Identity

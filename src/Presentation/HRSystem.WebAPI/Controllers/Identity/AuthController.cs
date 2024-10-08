@@ -1,7 +1,7 @@
 ﻿using HRSystem.Application.Features.Identity.Queries;
 using HRSystem.Application.Services.Identity;
-using HRSystem.Common.Requests;
-using HRSystem.Common.Responses;
+using HRSystem.Common.Requests.Identity;
+using HRSystem.Common.Responses.Identity;
 using HRSystem.Common.Responses.Wrapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
