@@ -3,7 +3,7 @@ using HRSystem.Common.Requests.Identity;
 using HRSystem.Common.Responses.Wrapper;
 using MediatR;
 
-namespace HRSystem.Application.Features.Identity.Commands;
+namespace HRSystem.Application.Features.Identity.Users.Commands;
 
 public class ChangeUserStatusCommand : IRequest<IResponseWrapper>
 {

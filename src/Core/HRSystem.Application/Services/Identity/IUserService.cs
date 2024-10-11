@@ -12,5 +12,7 @@ namespace HRSystem.Application.Services.Identity
         Task<IResponseWrapper> UpdateUserAsync( UpdateUserRequest updateUserRequest);
         Task<IResponseWrapper> ChangeUserPasswordAsync(ChangePasswordRequest changePasswordRequest);
         Task<IResponseWrapper> ChangeUserStatusAsync(ChangeUserStatusRequest changeUserStatusRequest);
+        Task<IResponseWrapper> GetRolesAsyn(string userId);
+        Task<IResponseWrapper> UpdateUserRolesAsync(UpdateUserRoleRequest updateUserRoleRequest);
     }
 }

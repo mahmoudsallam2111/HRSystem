@@ -3,7 +3,7 @@ using HRSystem.Common.Requests.Identity;
 using HRSystem.Common.Responses.Wrapper;
 using MediatR;
 
-namespace HRSystem.Application.Features.Identity.Queries;
+namespace HRSystem.Application.Features.Identity.Users.Commands;
 
 public class ChangePasswordCommand : IRequest<IResponseWrapper>
 {
@@ -11,7 +11,7 @@ public class ChangePasswordCommand : IRequest<IResponseWrapper>
 }
 
 
-public class ChangePasswordHandler : IRequestHandler<ChangePasswordCommand , IResponseWrapper>
+public class ChangePasswordHandler : IRequestHandler<ChangePasswordCommand, IResponseWrapper>
 {
     private readonly IUserService _userService;
 

@@ -1,10 +1,8 @@
-﻿using HRSystem.Application.Features.Identity.Queries;
-using HRSystem.Application.Services.Identity;
+﻿using HRSystem.Application.Features.Identity.Token.Queries;
 using HRSystem.Common.Requests.Identity;
 using HRSystem.Common.Responses.Identity;
 using HRSystem.Common.Responses.Wrapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRSystem.WebAPI.Controllers.Identity

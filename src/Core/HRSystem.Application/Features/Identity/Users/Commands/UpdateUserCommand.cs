@@ -3,7 +3,7 @@ using HRSystem.Common.Requests.Identity;
 using HRSystem.Common.Responses.Wrapper;
 using MediatR;
 
-namespace HRSystem.Application.Features.Identity.Commands;
+namespace HRSystem.Application.Features.Identity.Users.Commands;
 
 public class UpdateUserCommand : IRequest<IResponseWrapper>
 {
@@ -12,7 +12,7 @@ public class UpdateUserCommand : IRequest<IResponseWrapper>
 
 
 
-public class UpdateUserHandler (IUserService userService)
+public class UpdateUserHandler(IUserService userService)
     : IRequestHandler<UpdateUserCommand, IResponseWrapper>
 {
     public async Task<IResponseWrapper> Handle(UpdateUserCommand request, CancellationToken cancellationToken)

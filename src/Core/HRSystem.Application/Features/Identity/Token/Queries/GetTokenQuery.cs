@@ -3,7 +3,7 @@ using HRSystem.Common.Requests.Identity;
 using HRSystem.Common.Responses.Wrapper;
 using MediatR;
 
-namespace HRSystem.Application.Features.Identity.Queries
+namespace HRSystem.Application.Features.Identity.Token.Queries
 {
     public class GetTokenQuery : IRequest<IResponseWrapper>
     {

@@ -43,6 +43,7 @@ namespace HRSystem.Infrastructure.Persistence
         public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddHttpContextAccessor();
             return services;
         }
 

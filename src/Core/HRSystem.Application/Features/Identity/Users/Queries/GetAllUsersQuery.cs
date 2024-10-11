@@ -2,7 +2,7 @@
 using HRSystem.Common.Responses.Wrapper;
 using MediatR;
 
-namespace HRSystem.Application.Features.Identity.Queries;
+namespace HRSystem.Application.Features.Identity.Users.Queries;
 
 public class GetAllUsersQuery : IRequest<IResponseWrapper>
 {

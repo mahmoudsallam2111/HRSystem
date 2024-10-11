@@ -14,14 +14,17 @@ namespace HRSystem.Infrastructure.Persistence.Services.Identity
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
+        private readonly ICurrentUserService _currentUserService;
         private readonly IMapper _mapper;
 
         public UserService(UserManager<ApplicationUser> userManager,
             RoleManager<ApplicationRole> roleManager,
+            ICurrentUserService currentUserService,
             IMapper mapper)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _currentUserService = currentUserService;
             _mapper = mapper;
         }
 
@@ -61,7 +64,7 @@ namespace HRSystem.Infrastructure.Persistence.Services.Identity
                 return await ResponseWrapper<string>.SuccessAsync("User Registered Successfully");
             }
 
-            return await ResponseWrapper.FailAsync("User Registeration Failed");
+            return await ResponseWrapper.FailAsync(string.Join(",", GetIdentityErrorsDescription(identityResult)));
         }
 
 
@@ -106,7 +109,7 @@ namespace HRSystem.Infrastructure.Persistence.Services.Identity
                 return await ResponseWrapper<string>.SuccessAsync("User Updated Successfully");
             }
 
-            return await ResponseWrapper.FailAsync("Falied to update user");
+            return await ResponseWrapper.FailAsync(string.Join("," , GetIdentityErrorsDescription(identityResult)));
         }
 
         public async Task<IResponseWrapper> ChangeUserPasswordAsync(ChangePasswordRequest changePasswordRequest)
@@ -121,8 +124,7 @@ namespace HRSystem.Infrastructure.Persistence.Services.Identity
             // If the password change fails, return a failure response with error details
             if (!result.Succeeded)
             {
-                var errors = result.Errors.Select(e => e.Description).ToArray();
-                return await ResponseWrapper.FailAsync(string.Join("; ", errors));
+                return await ResponseWrapper.FailAsync(string.Join("," , GetIdentityErrorsDescription(result)));
             }
 
             // Return a success response if the password was changed successfully
@@ -149,6 +151,78 @@ namespace HRSystem.Infrastructure.Persistence.Services.Identity
 
             return await ResponseWrapper<string>.FailAsync(changeUserStatusRequest.Activate ? "failed to Active User Successfully"
                     : "failed to de-active user successfuly");
+        }
+
+        private IReadOnlyList<string> GetIdentityErrorsDescription(IdentityResult identityResult)
+        {
+            return identityResult.Errors.Select(e=>e.Description).ToList();
+        }
+
+        public async Task<IResponseWrapper> GetRolesAsyn(string userId)
+        {
+            List<UserRolesModelView> userRolesViewModel = new();
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user is null)
+                return await ResponseWrapper.FailAsync("Falied to Get users");
+
+            var roles = await _roleManager.Roles.ToListAsync();
+            foreach (var role in roles)
+            {
+                if (await _userManager.IsInRoleAsync(user , role.Name))
+                {
+                    userRolesViewModel.Add(new UserRolesModelView
+                    {
+                        RoleName = role.Name,
+                        RoleDiscription = role.Description,
+                        IsAssigned = true
+                    });
+                }
+            }
+
+            return await ResponseWrapper<List<UserRolesModelView>>.SuccessAsync(userRolesViewModel);
+        }
+
+        public async Task<IResponseWrapper> UpdateUserRolesAsync(UpdateUserRoleRequest updateUserRoleRequest)
+        {
+            var user = await _userManager.FindByIdAsync(updateUserRoleRequest.UserId);
+            if (user is null)
+                return await ResponseWrapper.FailAsync("Falied to Get users");
+
+            if (user.Email == AppCredentials.Email)
+                return await ResponseWrapper.FailAsync("User Roles Update is not permitted");
+
+            var currentUserRoles = await _userManager.GetRolesAsync(user);
+            var newAssignedRoles = updateUserRoleRequest.Roles
+                                                        .Where(r => r.IsAssigned)
+                                                        .Select(r => r.RoleName)
+                                                        .ToList();
+
+            var currentLoggedInUser = await _userManager.FindByIdAsync(_currentUserService.UserId);
+            if (currentLoggedInUser is null)
+                return await ResponseWrapper.FailAsync("Falied to Get users");
+
+            if (!await _userManager.IsInRoleAsync(currentLoggedInUser, AppRoles.Admin))
+                return await ResponseWrapper.FailAsync("User Roles Update is not permitted");
+
+            var rolesToRemove = currentUserRoles.Except(newAssignedRoles);
+            var rolesToAdd = newAssignedRoles.Except(currentUserRoles);
+
+            if (rolesToRemove.Any())
+            {
+                var removeResult = await _userManager.RemoveFromRolesAsync(user, rolesToRemove);
+                if (!removeResult.Succeeded)
+                    return await ResponseWrapper.FailAsync(string.Join(",", GetIdentityErrorsDescription(removeResult)));
+            }
+
+            if (rolesToAdd.Any())
+            {
+                var addResult = await _userManager.AddToRolesAsync(user, rolesToAdd);
+                if (!addResult.Succeeded)
+                    return await ResponseWrapper.FailAsync(string.Join(",", GetIdentityErrorsDescription(addResult)));
+            }
+
+            return await ResponseWrapper.SuccessAsync("User Roles Updated Successfully.");
         }
     }
 }
