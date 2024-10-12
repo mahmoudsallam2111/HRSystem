@@ -9,6 +9,8 @@ namespace HRSystem.Infrastructure.Persistence
         public MappingProfile()
         {
             CreateMap<ApplicationUser?, UserRegistrationResponse>().ReverseMap();
+            CreateMap<ApplicationRole?, RoleResponse>().ReverseMap();
+            CreateMap<ApplicationRoleClaim?, RoleClaimViewModel>().ReverseMap();
         }
     }
 }

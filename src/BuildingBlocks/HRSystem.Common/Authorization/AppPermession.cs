@@ -46,7 +46,8 @@ public class AppPermessions
 
     // admin only permession
     public static IReadOnlyList<AppPermession> AdminPermessions => _all.Where(p=>!p.IsBasic).ToList(); 
-    public static IReadOnlyList<AppPermession> BasicPermessions => _all.Where(p=>p.IsBasic).ToList(); 
+    public static IReadOnlyList<AppPermession> BasicPermessions => _all.Where(p=>p.IsBasic).ToList();
+    public static IReadOnlyList<AppPermession> AllPermessions => _all.ToList();
 }
 
 
