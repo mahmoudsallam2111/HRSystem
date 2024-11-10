@@ -69,5 +69,13 @@ namespace HRSystem.WebAPI.Controllers
             return Ok(response);
         }
 
+
+        [HttpGet("highest-salary")]
+        public async Task<IActionResult> GetHighestSalary()
+        {
+            var response = await Sender.Send(new GetHightSalaryEmployeeQuery {  });
+            return Ok(response);
+        }
+
     }
 }

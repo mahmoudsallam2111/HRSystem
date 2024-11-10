@@ -1,6 +1,8 @@
-﻿using HRSystem.Application.Interfaces;
+﻿using Ardalis.Specification;
+using HRSystem.Application.Interfaces;
 using HRSystem.Domain.Entities;
 using HRSystem.Infrastructure.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace HRSystem.Infrastructure.Persistence.Repositories
 {
@@ -9,5 +11,14 @@ namespace HRSystem.Infrastructure.Persistence.Repositories
         public EmployeeRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
+
+        //public async Task<Employee> GetEmployeeBySpec(ISpecification<Employee> spec)
+        //{
+
+        //    return await _dbContext.Set<Employee>()
+        //                      .Where(spec.)  // Applying the specification
+        //                      .ToListAsync();
+
+        //}
     }
 }

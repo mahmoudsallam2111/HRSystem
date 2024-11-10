@@ -10,6 +10,10 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/Presentation/HRSystem.WebAPI/HRSystem.WebAPI.csproj", "src/Presentation/HRSystem.WebAPI/"]
+COPY ["src/Core/HRSystem.Application/HRSystem.Application.csproj", "src/Core/HRSystem.Application/"]
+COPY ["src/Core/HRSystem.Domain/HRSystem.Domain.csproj", "src/Core/HRSystem.Domain/"]
+COPY ["src/Infrastrucure/HRSystem.Infrastructure.Persistence/HRSystem.Infrastructure.Persistence.csproj", "src/Infrastrucure/HRSystem.Infrastructure.Persistence/"]
+COPY ["src/BuildingBlocks/HRSystem.Common/HRSystem.Common.csproj", "src/BuildingBlocks/BuildingBlocks/"]
 RUN dotnet restore "./src/Presentation/HRSystem.WebAPI/./HRSystem.WebAPI.csproj"
 COPY . .
 WORKDIR "/src/src/Presentation/HRSystem.WebAPI"

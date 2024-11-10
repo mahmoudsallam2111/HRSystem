@@ -220,8 +220,8 @@ namespace HRSystem.Infrastructure.Persistence.Services.Identity
                 {
                     var mappedRoleClaims = _mapper.Map<ApplicationRoleClaim>(cliam);
                     await _dbContext.RoleClaims.AddAsync(mappedRoleClaims);
-                    await _dbContext.SaveChangesAsync();
                 }
+                await _dbContext.SaveChangesAsync();
 
                 return await ResponseWrapper<string>.SuccessAsync("Update permessions performed successfully");
             }

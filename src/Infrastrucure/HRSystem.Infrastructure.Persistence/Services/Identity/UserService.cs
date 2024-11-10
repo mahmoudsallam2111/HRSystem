@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HRSystem.Application.Services;
 using HRSystem.Application.Services.Identity;
 using HRSystem.Common.Authorization;
 using HRSystem.Common.Requests.Identity;
@@ -15,16 +16,19 @@ namespace HRSystem.Infrastructure.Persistence.Services.Identity
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly ICurrentUserService _currentUserService;
+        private readonly IEmailSender _emailSender;
         private readonly IMapper _mapper;
 
         public UserService(UserManager<ApplicationUser> userManager,
             RoleManager<ApplicationRole> roleManager,
             ICurrentUserService currentUserService,
+            IEmailSender emailSender,
             IMapper mapper)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _currentUserService = currentUserService;
+            _emailSender = emailSender;
             _mapper = mapper;
         }
 
@@ -60,6 +64,8 @@ namespace HRSystem.Infrastructure.Persistence.Services.Identity
             {
                 // assign user to role -- every new created role is assigned to guest role
                  await _userManager.AddToRoleAsync(applicationUser, AppRoles.Guest);
+
+                await _emailSender.SendEmailAsync(userRegistrationRequest.Email, "Register", "Welcome To Our HR System Mamagement");
 
                 return await ResponseWrapper<string>.SuccessAsync("User Registered Successfully");
             }

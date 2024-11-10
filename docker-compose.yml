@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  webapi:
+    image: hrsystem-webapi:latest  # Replace with the actual image name of your ASP.NET Core app
+    build:
+      context: .  # Use the current directory as the build context
+      dockerfile: src/Presentation/HRSystem.WebAPI/Dockerfile
+    ports:
+      - "8080:8080"  # Map host port 8080 to container port 8080
+      - "8081:8081"  # Map host port 8081 to container port 8081
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development  # Set your environment variable if needed
+    networks:
+      - mynetwork
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest  
+    ports:
+      - "1433:1433"  
+    environment:
+      - SA_PASSWORD=YourPassword  
+      - ACCEPT_EULA=Y  
+    networks:
+      - mynetwork
+  redis:
+    image: redis:latest  # Use the official Redis image
+    ports:
+      - "6379:6379"  # Map host port 6379 to container port 6379
+    networks:
+      - mynetwork
+
+  redisinsight:
+    image: redislabs/redisinsight:latest  # Use the official RedisInsight image
+    ports:
+      - "8001:8001"  # Map host port 8001 to container port 8001 (default port for RedisInsight)
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge  # Use bridge networking

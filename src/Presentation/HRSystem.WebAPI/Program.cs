@@ -1,5 +1,8 @@
+using Ardalis.Specification;
 using HRSystem.Application;
+using HRSystem.Domain.Entities;
 using HRSystem.Infrastructure.Persistence;
+using HRSystem.Infrastructure.Persistence.Repositories;
 using HRSystem.WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,11 +23,11 @@ builder.Services.AddApplicationServices();
 
 builder.Services.AddInfrastructureRepositories();
 builder.Services.AddInfrastructureDependencies();
+HRSystem.Infrastructure.Persistence.ServiceCollectionExtensions.ConfigureInfrastrucureServices(builder.Services);
 
 // scan DI && register it
 
 builder.Services.DependencyInjectionRegistrationScan();
-
 // add swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.RegisterSwagger();
