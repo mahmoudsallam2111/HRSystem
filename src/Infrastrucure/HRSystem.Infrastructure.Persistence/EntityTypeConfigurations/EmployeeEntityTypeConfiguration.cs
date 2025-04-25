@@ -1,6 +1,7 @@
 ﻿using HRSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Reflection.Emit;
 
 namespace HRSystem.Infrastructure.Persistence.EntityTypeConfigurations
 {
@@ -20,6 +21,10 @@ namespace HRSystem.Infrastructure.Persistence.EntityTypeConfigurations
                 fullName.HasIndex(f => f.FirstName);
                 fullName.HasIndex(f => f.FamilyName);
             });
+
+            builder
+                  .Property(e => e.RowVersion)
+                  .IsRowVersion();
         }
     }
 }

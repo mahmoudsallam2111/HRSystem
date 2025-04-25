@@ -1,8 +1,5 @@
-using Ardalis.Specification;
 using HRSystem.Application;
-using HRSystem.Domain.Entities;
 using HRSystem.Infrastructure.Persistence;
-using HRSystem.Infrastructure.Persistence.Repositories;
 using HRSystem.WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,7 +42,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//app.UseDelta<ApplicationDbContext>();
+
 app.UseHttpsRedirection();
+
 
 app.MapControllers();
 

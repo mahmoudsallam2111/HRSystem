@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HRSystem.WebAPI.Controllers
 {
-    [Authorize]
+    // [Authorize]
     public class EmployeeController : BaseController<EmployeeController>
     {
 
