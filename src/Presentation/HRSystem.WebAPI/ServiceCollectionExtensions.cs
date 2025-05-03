@@ -22,7 +22,7 @@ namespace HRSystem.WebAPI
     public static class ServiceCollectionExtensions
     {
 
-        internal static IServiceCollection AddIdentitySetting(this IServiceCollection services)
+        public static IServiceCollection AddIdentitySetting(this IServiceCollection services)
         {
             services
                   .AddSingleton<IAuthorizationPolicyProvider, PermessionPolicyProvider>()

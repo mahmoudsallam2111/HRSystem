@@ -33,6 +33,8 @@ builder.Services.RegisterSwagger();
 
 var app = builder.Build();
 
+
+//Note: it is replaced by the seeder in the migrator class, the aim of this class is to centralize the migration process
 app.SeedDataBase();   // seed the database with defult roles and users
 
 // Configure the HTTP request pipeline.

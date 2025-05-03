@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastrucure\HRSystem.Infrastructure.Persistence\HRSystem.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\Presentation\HRSystem.WebAPI\HRSystem.WebAPI.csproj" />
+    <ProjectReference Include="..\Shared\HrSystem.Shared.SQLScripts\HrSystem.Shared.SQLScripts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

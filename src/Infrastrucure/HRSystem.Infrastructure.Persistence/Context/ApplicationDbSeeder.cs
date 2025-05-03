@@ -1,11 +1,12 @@
 ﻿using HRSystem.Common.Authorization;
+using HRSystem.Common.DIContracts;
 using HRSystem.Infrastructure.Persistence.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace HRSystem.Infrastructure.Persistence.Context
 {
-    public class ApplicationDbSeeder
+    public class ApplicationDbSeeder : IApplicationDbSeeder
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
